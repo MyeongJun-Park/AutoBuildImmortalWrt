@@ -48,14 +48,23 @@ FILE_PATH="/etc/openwrt_release"
 NEW_DESCRIPTION="Compiled by MyeongJun-Park"
 sed -i "s/DISTRIB_DESCRIPTION='[^']*'/DISTRIB_DESCRIPTION='$NEW_DESCRIPTION'/" "$FILE_PATH"
 
-# 创建新的网络接口 "USB"
-uci set network.usb='interface'                # 新建接口名称为 USB
-uci set network.usb.proto='dhcp'               # 设置协议为 DHCP 客户端
-uci set network.usb.device='eth2'              # 设置设备为 eth2
+# 检查是否已存在名为 USB 的接口配置
+if grep -q "config interface 'usb'" /etc/config/network; then
+    echo "名为 USB 的接口配置已存在，跳过添加。" >> $LOGFILE
+else
+    echo "创建新的网络接口 USB..." >> $LOGFILE
 
-# 分配防火墙区域为 WAN 和 WAN6
-uci add_list firewall.@zone[0].network='usb'   # 将 USB 接口添加到 WAN 区域
-uci add_list firewall.@zone[1].network='usb'   # 将 USB 接口添加到 WAN6 区域
+    # 创建新的网络接口 "USB"
+    uci set network.usb='interface'                # 新建接口名称为 USB
+    uci set network.usb.proto='dhcp'               # 设置协议为 DHCP 客户端
+    uci set network.usb.device='eth2'              # 设置设备为 eth2
+
+    # 配置 USB 接口的防火墙区域为 WAN 和 WAN6
+    uci add_list firewall.@zone[0].network='usb'   # 将 USB 接口添加到 WAN 区域
+    uci add_list firewall.@zone[1].network='usb'   # 将 USB 接口添加到 WAN6 区域
+
+    echo "USB 接口已成功创建并分配到防火墙区域 WAN 和 WAN6。" >> $LOGFILE
+fi
 
 # 保存并应用配置
 uci commit network
