@@ -39,7 +39,16 @@ uci delete ttyd.@ttyd[0].interface
 
 # 设置所有网口可连接 SSH
 uci set dropbear.@dropbear[0].Interface=''
-uci commit
+
+# 新建一个名为 USB 的接口，协议为 DHCP 客户端，设备为 eth2
+uci set network.usb='interface'
+uci set network.usb.proto='dhcp'
+uci set network.usb.device='eth2'
+uci set network.usb.auto='1'
+echo "Created USB interface with DHCP client protocol on eth2." >> $LOGFILE
+
+# 提交所有网络相关配置
+uci commit network
 
 # 设置编译作者信息
 FILE_PATH="/etc/openwrt_release"
