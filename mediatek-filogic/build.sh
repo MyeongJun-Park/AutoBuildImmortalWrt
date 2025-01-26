@@ -35,12 +35,11 @@ PACKAGES="$PACKAGES luci-i18n-passwall-zh-cn"
 PACKAGES="$PACKAGES luci-app-openclash"
 PACKAGES="$PACKAGES luci-i18n-ramfree-zh-cn"
 PACKAGES="$PACKAGES openssh-sftp-server"
-PACKAGES="$PACKAGES luci-i18n-smartdns-zh-cn"
 # 增加几个必备组件 方便用户安装iStore
 PACKAGES="$PACKAGES fdisk"
 PACKAGES="$PACKAGES script-utils"
 PACKAGES="$PACKAGES luci-i18n-samba4-zh-cn"
-# 增加几个必备组件 用于GL.iNet GL-MT3000接入中兴F50
+# 增加几个必备组件 用于GL.iNet GL-MT3000 接入中兴F50
 PACKAGES="$PACKAGES usb-modeswitch"
 PACKAGES="$PACKAGES usbmuxd"
 PACKAGES="$PACKAGES kmod-usb-acm"
