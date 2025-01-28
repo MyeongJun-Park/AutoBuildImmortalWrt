@@ -66,6 +66,10 @@ PACKAGES="$PACKAGES kmod-usb3"
 PACKAGES="$PACKAGES libusb-1.0-0"
 PACKAGES="$PACKAGES libusbmuxd"
 
+# 安装wget和tailscale的先决条件：
+PACKAGES="$PACKAGES libustream-openssl"
+PACKAGES="$PACKAGES ca-bundle"
+PACKAGES="$PACKAGES kmod-tun"
 # 判断是否需要编译 Docker 插件
 if [ "$INCLUDE_DOCKER" = "yes" ]; then
     PACKAGES="$PACKAGES luci-i18n-dockerman-zh-cn"
