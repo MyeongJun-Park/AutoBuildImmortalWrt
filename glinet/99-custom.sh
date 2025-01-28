@@ -1,5 +1,6 @@
 #!/bin/sh
-# 该脚本为immortalwrt首次启动时 运行的脚本 即 /etc/uci-defaults/99-custom.sh
+# 该脚本为immortalwrt首次启动时运行的脚本，即 /etc/uci-defaults/99-custom.sh
+
 # 设置默认防火墙规则，方便虚拟机首次访问 WebUI
 uci set firewall.@zone[1].input='ACCEPT'
 
@@ -16,9 +17,11 @@ else
    # 读取pppoe信息(由build.sh写入)
    . "$SETTINGS_FILE"
 fi
-# 无需判断网卡数量 因为glinet是多网口
+
+# 无需判断网卡数量，因为 glinet 是多网口
 uci set network.lan.ipaddr='192.168.8.1'
 echo "set 192.168.8.1 at $(date)" >> $LOGFILE
+
 # 判断是否启用 PPPoE
 echo "print enable_pppoe value=== $enable_pppoe" >> $LOGFILE
 if [ "$enable_pppoe" = "yes" ]; then
