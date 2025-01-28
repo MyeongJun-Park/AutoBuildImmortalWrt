@@ -1,6 +1,5 @@
 #!/bin/sh
-# 该脚本为immortalwrt首次启动时运行的脚本，即 /etc/uci-defaults/99-custom.sh
-
+# 该脚本为immortalwrt首次启动时 运行的脚本 即 /etc/uci-defaults/99-custom.sh
 # 设置默认防火墙规则，方便虚拟机首次访问 WebUI
 uci set firewall.@zone[1].input='ACCEPT'
 
@@ -17,11 +16,9 @@ else
    # 读取pppoe信息(由build.sh写入)
    . "$SETTINGS_FILE"
 fi
-
-# 无需判断网卡数量，因为 glinet 是多网口
+# 无需判断网卡数量 因为glinet是多网口
 uci set network.lan.ipaddr='192.168.8.1'
 echo "set 192.168.8.1 at $(date)" >> $LOGFILE
-
 # 判断是否启用 PPPoE
 echo "print enable_pppoe value=== $enable_pppoe" >> $LOGFILE
 if [ "$enable_pppoe" = "yes" ]; then
@@ -49,6 +46,13 @@ uci set network.usb.proto='dhcp'
 uci set network.usb.device='eth2'
 uci set network.usb.auto='1'
 echo "Created USB interface with DHCP client protocol on eth2." >> $LOGFILE
+
+# 新建一个名为 Tailscale 的接口，协议设置为 'none'，设备为 tailscale0
+uci set network.tailscale='interface'
+uci set network.tailscale.proto='none'
+uci set network.tailscale.device='tailscale0'
+uci set network.tailscale.auto='1'
+echo "Created Tailscale interface with 'none' protocol on tailscale0." >> $LOGFILE
 
 # 提交所有网络相关配置
 uci commit network
