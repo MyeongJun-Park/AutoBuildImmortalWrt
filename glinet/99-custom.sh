@@ -47,13 +47,6 @@ uci set network.usb.device='eth2'
 uci set network.usb.auto='1'
 echo "Created USB interface with DHCP client protocol on eth2." >> $LOGFILE
 
-# 新建一个名为 Tailscale 的接口，协议设置为 'none'，设备为 tailscale0
-uci set network.tailscale='interface'
-uci set network.tailscale.proto='none'
-uci set network.tailscale.device='tailscale0'
-uci set network.tailscale.auto='1'
-echo "Created Tailscale interface with 'none' protocol on tailscale0." >> $LOGFILE
-
 # 提交所有网络相关配置
 uci commit network
 
