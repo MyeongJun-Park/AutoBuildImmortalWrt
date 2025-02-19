@@ -76,7 +76,6 @@ PACKAGES="$PACKAGES kmod-tun"
 PACKAGES="$PACKAGES luci-i18n-autoreboot-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-smartdns-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-vlmcsd-zh-cn"
-PACKAGES="$PACKAGES kmod-usb-net-rtl8152-vendor"
 
 # 构建镜像
 echo "$(date '+%Y-%m-%d %H:%M:%S') - Building image with the following packages:"
