@@ -65,12 +65,16 @@ PACKAGES="$PACKAGES luci-app-ramfree"
 # 代理工具
 PACKAGES="$PACKAGES luci-i18n-passwall-zh-cn"
 PACKAGES="$PACKAGES luci-app-openclash"
-# F50驱动
+# F50 驱动
 PACKAGES="$PACKAGES kmod-usb-net"
 PACKAGES="$PACKAGES kmod-usb-net-cdc-ether"
 PACKAGES="$PACKAGES kmod-usb-net-rndis"
 PACKAGES="$PACKAGES kmod-usb-net-cdc-ncm"
 PACKAGES="$PACKAGES usbutils"
+# VPN 驱动
+PACKAGES="$PACKAGES libustream-openssl"
+PACKAGES="$PACKAGES ca-bundle"
+PACKAGES="$PACKAGES kmod-tun"
 # 判断是否需要编译 Docker 插件
 if [ "$INCLUDE_DOCKER" = "yes" ]; then
     PACKAGES="$PACKAGES luci-i18n-dockerman-zh-cn"
