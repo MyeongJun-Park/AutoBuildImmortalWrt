@@ -41,24 +41,37 @@ fi
 
 # 输出调试信息
 echo "$(date '+%Y-%m-%d %H:%M:%S') - 开始构建..."
-# 定义所需安装的包列表 下列插件你都可以自行删减
+# 定义所需安装的包列表 23.05.4 下列插件你都可以自行删减
 PACKAGES=""
 PACKAGES="$PACKAGES curl"
 PACKAGES="$PACKAGES luci-i18n-diskman-zh-cn"
+PACKAGES="$PACKAGES luci-i18n-opkg-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-firewall-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-filebrowser-zh-cn"
 PACKAGES="$PACKAGES luci-theme-argon"
 PACKAGES="$PACKAGES luci-app-argon-config"
 PACKAGES="$PACKAGES luci-i18n-argon-config-zh-cn"
-PACKAGES="$PACKAGES luci-i18n-opkg-zh-cn"
 PACKAGES="$PACKAGES luci-i18n-ttyd-zh-cn"
-PACKAGES="$PACKAGES luci-i18n-passwall-zh-cn"
-PACKAGES="$PACKAGES luci-app-openclash"
 PACKAGES="$PACKAGES luci-i18n-homeproxy-zh-cn"
 PACKAGES="$PACKAGES openssh-sftp-server"
-PACKAGES="$PACKAGES luci-i18n-samba4-zh-cn"
+PACKAGES="$PACKAGES luci-i18n-ramfree-zh-cn"
+PACKAGES="$PACKAGES luci-app-ramfree"
+# 代理工具
+PACKAGES="$PACKAGES luci-i18n-passwall-zh-cn"
+PACKAGES="$PACKAGES luci-app-openclash"
+# F50 驱动
+PACKAGES="$PACKAGES kmod-usb-net"
+PACKAGES="$PACKAGES kmod-usb-net-cdc-ether"
+PACKAGES="$PACKAGES kmod-usb-net-rndis"
+PACKAGES="$PACKAGES kmod-usb-net-cdc-ncm"
+PACKAGES="$PACKAGES usbutils"
+# VPN 驱动
+PACKAGES="$PACKAGES libustream-openssl"
+PACKAGES="$PACKAGES ca-bundle"
+PACKAGES="$PACKAGES kmod-tun"
+
 # 静态文件服务器dufs(推荐)
-PACKAGES="$PACKAGES luci-i18n-dufs-zh-cn"
+#PACKAGES="$PACKAGES luci-i18n-dufs-zh-cn"
 # ======== shell/custom-packages.sh =======
 # 合并imm仓库以外的第三方插件
 PACKAGES="$PACKAGES $CUSTOM_PACKAGES"
